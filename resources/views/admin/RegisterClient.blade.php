@@ -9,6 +9,10 @@
 </nav>
 <br>
 
+<a class="btn" href="">Dashboard</a>
+<br>
+<a class="btn" href="{{ route('home') }}">Arriendos</a>
+
 <div class="container">
     <div class="row">
         <div class="col">

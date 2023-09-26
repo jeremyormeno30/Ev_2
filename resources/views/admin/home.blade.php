@@ -8,6 +8,8 @@
     </div>
 </nav>
 <br>
+<a class="btn" href="">Dashboard</a>
+<br>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -28,7 +30,7 @@
                     <th scope="col">Patente</th>
                     <th scope="col">Entrega</th>
                     <th scope="col">Devolución</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Acción</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +45,7 @@
                         <form action="{{ route('clientes.delete', ['id' => $cliente->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Eliminar" class="btn btn-outline-secondary btn-sm">
+                            <input type="submit" value="Entregado" class="btn btn-outline-secondary btn-sm">
                         </form>
                     </td>
                 </tr>
