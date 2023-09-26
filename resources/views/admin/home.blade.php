@@ -7,9 +7,18 @@
         <a class="btn btn-outline-light" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
 </nav>
-
+<br>
 <div class="container">
-    <h1 class="section-separator mb-4">Arriendos</h1>
+    <div class="row">
+        <div class="col">
+            <h1>Arriendos</h1>
+        </div>
+        <div class="col p-2 d-flex justify-content-end">
+            <a class="btn btn-primary" href="{{ route('register.client') }}">Nuevo Arriendo</a>
+        </div>
+    </div>
+<hr>
+
         <section class="mb-5">
             <table class="table table-striped">
                 <thead>
@@ -31,7 +40,7 @@
                     <td>{{ $cliente->deadline }}</td>
                     <td>{{ $cliente->returndate }}</td>
                     <td>
-                        <form >
+                        <form action="{{ route('clientes.delete', ['id' => $cliente->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Eliminar" class="btn btn-outline-secondary btn-sm">

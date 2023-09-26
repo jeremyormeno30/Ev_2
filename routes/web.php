@@ -41,7 +41,7 @@ Route::group(['prefix' => '/registerClient'], function(){
     Route::post('/', [RentalController::class, 'rentalAccount'])->name('register.rental')->middleware('auth');
 });
 
-Route::delete('/vehicles/{id}', [VehiclesController::class, 'delete'])->name('vehicles.delete')->middleware('auth');
+Route::delete('/clientes/{id}', [RentalController::class, 'delete'])->name('clientes.delete')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

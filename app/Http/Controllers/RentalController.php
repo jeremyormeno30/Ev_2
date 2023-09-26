@@ -39,4 +39,10 @@ class RentalController extends Controller
         ]);
         return redirect()->route('home');
     }
+
+    public function delete($id){
+        $cliente = Client::find($id);
+        $cliente->delete();
+        return redirect()->route('home');
+    }
 }
