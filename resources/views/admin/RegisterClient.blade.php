@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-md-3">
-            <input type="date" class="form-control" id="deadline" name="deadline">
+            <input type="date" class="form-control" id="deadline" name="deadline" >
         </div>
 
         <div class="col-md-6">
@@ -62,6 +62,10 @@
                 <input type="email" class="form-control" placeholder="Email" id="email" name="email">
             </div>
 
+            <div class="col-md-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -72,13 +76,9 @@
                 </div>
             @endif
 
-            <div class="col-md-3 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-            
                 <br>
                 <br>
-                <br>
+
 
             <h2>Vehiculos Disponibles</h2>
                 <select class="form-select" multiple aria-label="Multiple select example">
