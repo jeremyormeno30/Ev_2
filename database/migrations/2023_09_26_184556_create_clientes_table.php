@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('names');
             $table->string('lastname');
             $table->string('lastname2');
-            $table->string('RUT')->unique();
+            $table->string('RUT');
             $table->string('email');
             $table->date('deadline');
             $table->date('returndate');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });

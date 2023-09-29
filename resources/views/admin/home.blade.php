@@ -22,8 +22,8 @@
 <hr>
 
         <section class="mb-5">
-            <table class="table table-striped">
-                <thead>
+            <table id="table_vehicles" class="table justify-content-center">
+                <thead class="table-dark">
                 <tr>
                     <th scope="col">Cliente</th>
                     <th scope="col">Rut</th>
@@ -38,14 +38,14 @@
                 <tr>
                     <td scope="row">{{ $cliente->names }} {{ $cliente->lastname }}</td>
                     <td>{{ $cliente->RUT }}</td>
-                    <td>{{ $cliente->vehicle_id}}</td>
+                    <td>{{ $cliente->vehicle->patent}}</td>
                     <td>{{ $cliente->deadline }}</td>
                     <td>{{ $cliente->returndate }}</td>
                     <td>
                         <form action="{{ route('clientes.delete', ['id' => $cliente->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Entregado" class="btn btn-outline-secondary btn-sm">
+                            <input type="submit" value="Entregado" class="btn btn-danger">
                         </form>
                     </td>
                 </tr>
@@ -55,13 +55,19 @@
         </section>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"></script>
+
+<script> $(document).ready(function() {
+    $('#table_vehicles').DataTable({
+        language: {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+        }
+    });
+});</script>
+
 @endsection
 
 
-@push('css')
-<style>
-    .section-separator {
-        margin-top: 80px;
-    }
-</style>
-@endpush
