@@ -47,4 +47,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Dashboard', [HomeController::class, 'showDashboard'])->name('dashi'); // esta es la ruta para guiar a la vista dashboard
+Route::get('/Dashboard', [HomeController::class, 'showDashboard'])->name('dashboard'); // esta es la ruta para guiar a la vista dashboard

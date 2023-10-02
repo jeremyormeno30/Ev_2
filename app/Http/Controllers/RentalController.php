@@ -9,23 +9,22 @@ use Illuminate\Http\Request;
 class RentalController extends Controller
 {
     public function showRegisterClient(){
-        $assigned = Client::pluck('vehicle_id')->toArray();
-        $availableVehicles = Vehicle::whereNotIn('id', $assigned)->get();
+        $vehicles = Vehicle::all();
         return View('admin.RegisterClient')->with([
-            'vehicles' => $availableVehicles
+            'vehicles' => $vehicles,
         ]);
     }
 
     public function rentalAccount(Request $request){
         $request->validate([
             'vehicle_id' => 'required|exists:vehicles,id',
-            'names' => 'required|string',
-            'lastname' => 'required|string',
-            'lastname2' => 'required|string',
-            'RUT' => 'required|string|min:10|max:12',
-            'email' => 'required|email',
+            'names' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'lastname2' => 'required|string|max:255',
+            'RUT' => 'required|string|min:8|max:12',
+            'email' => 'required|email|max:255',
             'deadline' => 'required|date|after_or_equal:today',
-            'returndate' => 'required|date|after_or_equal:today',
+            'returndate' => 'required|date|after_or_equal:deadline',
         ],[
             'vehicle_id.required' => 'Patente es campo obligatorio.',
             'names.required' => 'Nombres es campo obligatorio.',
@@ -35,8 +34,24 @@ class RentalController extends Controller
             'email.required' => 'Email es campo obligatorio.',
             'deadline.required' => 'Fecha Arriendo es campo obligatorio.',
             'returndate.required' => 'Fecha de Entrega es obligatorio.',
-            'after_or_equal' => 'La fecha debe ser igual o posterior a hoy.',
         ]);
+
+        // Validacion si existe disponibilidad del vehiculo en las fechas ingresadas
+        $existingRentals = Client::where('vehicle_id', $request->vehicle_id)
+        ->where(function($query) use ($request) {
+            $query->whereBetween('deadline', [$request->deadline, $request->returndate])
+                ->orWhereBetween('returndate', [$request->deadline, $request->returndate])
+                ->orWhere(function($query) use ($request) {
+                    $query->where('deadline', '<=', $request->deadline)
+                        ->where('returndate', '>=', $request->returndate);
+                });
+        })
+        ->exists();
+
+        if($existingRentals) {
+        return redirect()->back()->withErrors(['error' => 'El vehículo ya está arrendado en las fechas seleccionadas']);
+        }
+
         Client::create([
             'vehicle_id' => $request->vehicle_id,
             'names' => $request->names,

@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ArriendAPP</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-</head>
-
-<body>
-
-    <nav class="navbar bg-primary">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">ArriendAPP</span>
-            <a class="btn btn-outline-light" href="{{ route('logout') }}">Cerrar Sesión</a>
-        </div>
-    </nav>
+@section('main-content')
 
     <section id="boton">
 
-        <br>
-
-        <br>
-        <i class="fa-solid fa-house-chimney"></i>
-        <a class="btn" href="{{ route('home') }}">Arriendos</a>
+        {{-- <i class="fa-solid fa-house-chimney"></i>
+        <a class="btn" href="{{ route('home') }}">Arriendos</a> --}}
 
         <br>
         <div class="container">
@@ -35,11 +16,9 @@
                     <br>
                     <br>
                     <label class="form-label"><b>Vehiculos existentes en cada categoria</b></label>
-
                 </div>
             </div>
             <br>
-
     </section>
 
     <section class="mb-5">
@@ -71,17 +50,10 @@
                 <p>Total de arriendos registrados</p>
                 <br>
                 <h1>{{ $contador }}</h1>
-
             </div>
-
         </div>
-
     </section>
     </div>
-
-</body>
-
-</html>
 
 <style>
     .table-striped {
@@ -114,7 +86,4 @@
     }
 </style>
 
-
-@extends('layouts.main')
-@section('main-content')
 @endsection

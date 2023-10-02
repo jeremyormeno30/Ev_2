@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ArriendAPP</title>
-</head>
+@section('main-content')
 
-<body>
-
-    <nav class="navbar bg-primary">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">ArriendAPP</span>
-            <a class="btn btn-outline-light" href="{{ route('logout') }}">Cerrar Sesión</a>
-        </div>
-    </nav>
-    <br>
-
-    <i class="fa-solid fa-house-chimney"></i>
+@php
+$today = date('Y-m-d');
+@endphp
+    {{-- <i class="fa-solid fa-house-chimney"></i>
     <a class="btn" href="{{ route('dashi') }}">Dashboard</a> <!-- este es el boton hacia la vista Dashboard-->
     <br>
     <i class="fa-solid fa-house-chimney"></i>
-    <a class="btn" href="{{ route('home') }}">Arriendos</a>
+    <a class="btn" href="{{ route('home') }}">Arriendos</a> --}}
 
     <div class="container">
         <div class="row">
@@ -31,6 +18,8 @@
             </div>
 
             <br>
+            <br>
+            <hr>
 
             <form class="row g-3" action="{{ route('register.rental') }}" method="POST">
                 @csrf
@@ -92,20 +81,17 @@
                         <br>
 
                         <label class="form-label"><b>Sobre el prestamo</b></label>
-                        <br>
+   
                         <div class="col-md-3">
                             <option value="" disabled selected>Fecha de entrega</option>
                             <input type="date" class="form-control" id="deadline" name="deadline"
-                                placeholder="Fecha de entrega">
+                                placeholder="Fecha de entrega" min="{{ $today }}" >
                         </div>
 
                         <div class="col-md-3">
                             <option value="" disabled selected>Fecha de devolucion</option>
-                            <input type="date" class="form-control" id="returndate" name="returndate">
+                            <input type="date" class="form-control" id="returndate" name="returndate" min="{{ $today }}" >
                         </div>
-
-                        <br>
-
 
                     </div>
                 </div>
@@ -156,59 +142,61 @@
                     <br>
                 </section>
 
-
             </form>
-
 
         </div>
     </div>
 
-</body>
 
-</html>
 
-@extends('layouts.main')
-@section('main-content')
-@endsection
+<script>
+    document.getElementById('deadline').addEventListener('change', function() {
+        var deadline = this.value;
+        document.getElementById('returndate').min = deadline;
+    });
+</script>
 
 <style>
     .container {
-        display: flex;
+  display: flex;
 
-        /* Distribuye los elementos a la izquierda y a la derecha */
-    }
+  /* Distribuye los elementos a la izquierda y a la derecha */
+}
 
-    .left {
-        /* El elemento izquierdo ocupa todo el espacio disponible */
-        margin-right: 50px;
-        padding: 0;
-    }
+.left {
+  /* El elemento izquierdo ocupa todo el espacio disponible */
+  margin-right: 50px;
+  padding: 0;
+}
 
-    .col-md-6 .form-control {
-        width: 30em;
-    }
+.col-md-6 .form-control {
+  width: 30em;
+}
 
-    .col-md-3 .form-control {
-        width: 30em;
-    }
+.col-md-3 .form-control {
+  width: 30em;
+}
 
-    .col-md-3 .form-select {
-        width: 30em;
-    }
+.col-md-3 .form-select {
+  width: 30em;
+}
 
-    .right {
-        /* El elemento derecho ocupa todo el espacio disponible */
-        flex: 1;
+.right {
+  /* El elemento derecho ocupa todo el espacio disponible */
+  flex: 1;
 
-    }
+}
 
-    .g-2 {
-        margin-right: 50px;
-        justify-content: end;
-        width: 30em;
-    }
+.g-2 {
+  margin-right: 50px;
+  justify-content: end;
+  width: 30em;
+}
 
-    .g-2 .btn-primary {
-        width: 30em;
-    }
+.g-2 .btn-primary {
+  width: 30em;
+}
 </style>
+
+@endsection
+
