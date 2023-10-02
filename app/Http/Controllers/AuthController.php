@@ -8,29 +8,33 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function showLogin(){
+    public function showLogin()
+    {
         return View('auth.login');
     }
 
-    public function attemptLogin(Request $request){
+    public function attemptLogin(Request $request)
+    {
         $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
         $credentials = ['email' => $request->email, 'password' => $request->password];
-        if(Auth::attempt($credentials, $request?->remember)){
+        if (Auth::attempt($credentials, $request?->remember)) {
             $user = Auth::user();
             return redirect()->route('home')->with('user', $user);
-        }else{
+        } else {
             return redirect()->back()->withErrors(['error' => 'Credenciales incorrectas']);
         }
     }
 
-    public function showRegister(){
+    public function showRegister()
+    {
         return View('auth.register');
     }
 
-    public function storeAccount(Request $request){
+    public function storeAccount(Request $request)
+    {
         $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
@@ -49,7 +53,8 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
