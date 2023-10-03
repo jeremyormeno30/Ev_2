@@ -58,7 +58,7 @@
     <section class="footer">
         <!-- footer section start -->
         <footer>
-            <span>Edited for - Alonso Cuevas & Jeremy Ormeño - <span class="far fa-copyright"></span>
+            <span>Edited by - Alonso Cuevas & Jeremy Ormeño - <span class="far fa-copyright"></span>
                 2023 All
                 rights reserved.</span>
         </footer>
