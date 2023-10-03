@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    {{-- navbar para las vistas de admin --}}
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">ArriendAPP</a>
@@ -61,5 +62,4 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     @stack('js')
 </body>
-
 </html>

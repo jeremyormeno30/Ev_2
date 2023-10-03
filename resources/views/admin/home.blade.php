@@ -1,20 +1,16 @@
 @extends('layouts.main')
 
 @section('main-content')
-    {{-- <i class="fa-solid fa-house-chimney"></i>
-        <a class="btn" href="{{ route('dashi') }}">Dashboard</a> <!-- este es el boton hacia la vista Dashboard-->
-        <br> --}}
+
     <div class="container">
         <div class="row">
             <div class="col">
                 <h1>Arriendos</h1>
             </div>
-            {{-- <div class="col p-2 d-flex justify-content-end">
-                    <a class="btn btn-primary" href="{{ route('register.client') }}">Nuevo Arriendo</a>
-                </div> --}}
         </div>
         <hr>
 
+        {{-- tabla con los arriendos registrados y con los datos correspondientes --}}
         <section class="mb-5 custom-table-wrapper table-responsive">
             <table id="table_vehicles" class="table table-bordered datatable-table">
                 <thead class="table-dark">
@@ -50,6 +46,7 @@
     </div>
     </div>
 
+    {{-- scripts de plugins para DataTable --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"></script>
@@ -59,6 +56,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 
+    {{-- script configuracion de Datatable --}}
     <script>
         $(document).ready(function() {
             $('#table_vehicles').DataTable({
@@ -68,6 +66,7 @@
                 pageLength: 10,
                 dom: 'Bfrtip',
                 buttons: [{
+                        // boton para exportar como excel
                         extend: 'excelHtml5',
                         text: 'Exportar a Excel',
                         className: 'btn btn-success btn-sm',
@@ -76,6 +75,7 @@
                         }
                     },
                     {
+                        // boton para exportar como pdf
                         extend: 'pdfHtml5',
                         text: 'Exportar a PDF',
                         className: 'btn btn-danger btn-sm',

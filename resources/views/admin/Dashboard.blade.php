@@ -3,9 +3,6 @@
 @section('main-content')
     <section id="boton">
 
-        {{-- <i class="fa-solid fa-house-chimney"></i>
-        <a class="btn" href="{{ route('home') }}">Arriendos</a> --}}
-
         <br>
         <div class="Dashboard-container">
             <div class="row">
@@ -33,6 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- tabla por categoria y cantidad de vehiculos --}}
                         @foreach ($conteoPorCategoria as $categoria1)
                             <tr>
                                 <!--Suv, Hatchback, Camioneta, Sedan, Deportivo-->
@@ -45,6 +43,7 @@
                 </table>
             </div>
 
+            {{-- total de arriendos realizados  --}}
             <div class="column Dashboard-right">
                 <div class="Dashboard-column">
                     <p>Total de arriendos registrados</p>

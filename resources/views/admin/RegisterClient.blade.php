@@ -2,14 +2,10 @@
 
 @section('main-content')
 
+{{-- obtener la fecha actualizada --}}
     @php
         $today = date('Y-m-d');
     @endphp
-    {{-- <i class="fa-solid fa-house-chimney"></i>
-    <a class="btn" href="{{ route('dashi') }}">Dashboard</a> <!-- este es el boton hacia la vista Dashboard-->
-    <br>
-    <i class="fa-solid fa-house-chimney"></i>
-    <a class="btn" href="{{ route('home') }}">Arriendos</a> --}}
 
     <div class="Register-container">
         <div class="row">
@@ -21,6 +17,7 @@
             <br>
             <hr>
 
+            {{-- Formulario Registro de Arriendo --}}
             <form class="row g-3" action="{{ route('register.rental') }}" method="POST">
                 @csrf
 
@@ -68,6 +65,7 @@
                     <div class="column Register-right">
                         <label class="form-label"><b>Datos del vehiculo</b></label>
                         <div class="col-md-3">
+                            {{-- select para elegir la patente del vehiculo --}}
                             <select class="form-select" name="vehicle_id" id="vehicle_id">
                                 <option value="" disabled selected>Patente</option>
                                 @foreach ($vehicles as $vehicle)
@@ -115,6 +113,7 @@
 
                 </div>
 
+                {{-- select donde se encuentran todos los vehiculos disponibles --}}
                 <section>
                     <h2>Vehiculos Disponibles</h2>
                     <select class="form-select" multiple aria-label="Multiple select example">
@@ -145,8 +144,8 @@
         </div>
     </div>
 
-
-
+{{-- al seleccionar fecha de entrega, la fecha de devolucion se cambia a la misma de entrega para que 
+sea mayor o igual a la fecha de entrega --}}
     <script>
         document.getElementById('deadline').addEventListener('change', function() {
             var deadline = this.value;
